@@ -1,0 +1,81 @@
+Parameters:
+  App:
+    Type: String
+  Env:
+    Type: String
+  Name:
+    Type: String
+
+Resources:
+  CognitoUserPool:
+    Type: "AWS::Cognito::UserPool"
+    Properties:
+      UserPoolName: !Sub ${App}-${Env}-user-pool
+      AutoVerifiedAttributes:
+        - email
+      UsernameAttributes:
+        - email
+
+  CognitoUserPoolClient:
+    Type: "AWS::Cognito::UserPoolClient"
+    Properties:
+      UserPoolId: !Ref CognitoUserPool
+      ClientName: !Sub ${App}-${Env}-client
+      GenerateSecret: false
+      ExplicitAuthFlows:
+        - ALLOW_USER_SRP_AUTH
+        - ALLOW_REFRESH_TOKEN_AUTH
+      CallbackURLs:
+        - !Sub "https://${Name}.${Env}.${App}.k8s-kloud.com/authorize"
+        # would like to use the following per [https://aws.github.io/copilot-cli/docs/developing/domain/] but results in
+        # Template format error: Unresolved resource dependencies [DomainName] in the Resources block of the template
+        # - !Sub "https://${Name}.${Env}.${App}.${DomainName}/authorize"
+      LogoutURLs:
+        - !Sub "https://${Name}.${Env}.${App}.k8s-kloud.com/logout"
+        # would like to use the following per [https://aws.github.io/copilot-cli/docs/developing/domain/]but results in
+        # Template format error: Unresolved resource dependencies [DomainName] in the Resources block of the template
+        # - !Sub "https://${Name}.${Env}.${App}.${DomainName}/logout"
+      AllowedOAuthFlows:
+        - code
+      AllowedOAuthScopes:
+        - email
+        - openid
+        - profile
+      SupportedIdentityProviders:
+        - COGNITO
+      AllowedOAuthFlowsUserPoolClient: True # Set here
+
+  CognitoUserPoolDomain:
+    Type: AWS::Cognito::UserPoolDomain
+    Properties:
+      Domain: !Sub "${Env}-${App}"
+      UserPoolId: !Ref CognitoUserPool
+
+  CognitoUserPoolResourceServer:
+    Type: AWS::Cognito::UserPoolResourceServer
+    Properties:
+      UserPoolId: !Ref CognitoUserPool
+      Identifier: !Sub "${Env}.${App}"
+      Name: !Sub "${Env}.${App}"
+      Scopes:
+        - ScopeName: "api.readwrite"
+          ScopeDescription: "All access"
+
+
+Outputs:
+  UserPoolId:
+    Value: !Ref CognitoUserPool
+    Export:
+      Name: !Sub ${App}-${Env}-UserpoolId
+  Domain:
+    Value: !Ref CognitoUserPoolDomain
+    Export:
+      Name: !Sub ${App}-${Env}-CognitoUserPoolDomain
+  UserPoolClientId:
+    Value: !Ref CognitoUserPoolClient
+    Export:
+      Name: !Sub ${App}-${Env}-UserpoolClientId  
+  UserpoolArn:
+    Value: !GetAtt CognitoUserPool.Arn
+    Export:
+      Name: !Sub ${App}-${Env}-UserpoolArn

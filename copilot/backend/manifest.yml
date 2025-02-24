@@ -1,0 +1,26 @@
+name: backend
+type: Load Balanced Web Service
+# type: Backend Service
+
+image:
+  build: Dockerfile
+  port: 8080
+
+http:
+  path: '/'
+  healthcheck:
+    path: '/'
+    port: 8080
+    # healthy_threshold: 3
+    # unhealthy_threshold: 2
+    # interval: 15s
+    # timeout: 10s
+
+cpu: 256
+memory: 512
+platform: linux/x86_64  # See https://aws.github.io/copilot-cli/docs/manifest/backend-service/#platform
+count: 1
+exec: true     # Enable running commands in your container.
+
+variables:                    
+  DOMAIN_NAME: k8s-kloud.com
