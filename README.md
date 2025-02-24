@@ -7,7 +7,7 @@ docker build . -t  python-web
 ( should be able to get to the main page only unless you setup copilot manually to use the following )
  - localhost/authorize as redirect url and 
  - localhost/logout as logout url)
- also set COGNITO_USER_POOL_ID and COGNITO_CLIENT_ID in the .env file
+ - also set COGNITO_USER_POOL_ID and COGNITO_CLIENT_ID in the .env file
 
 ```
 docker run --name=python-web --rm -p 8080:8080 python-web
