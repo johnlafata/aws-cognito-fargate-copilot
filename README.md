@@ -1,4 +1,13 @@
-# Using  AWS Copilot to deploy to Fargate
+# Using AWS Copilot to deploy to Fargate using Amazon Cognito for authentication.
+
+This repo represents the collection of my effort to deploy a simple python application to AWS Fargate with a public page and a private page.  The private page can be accessed after registration and authentication with Amazon Cognito.   I am using AWS copilot as a tool to create all the AWS infrastructure needed and manage the deployment.   
+
+Future updates will include:
+  - the addition of a CI/CD pipeline using AWS CodePipeline.
+  - the addition of a login page using Amazon Cognito.
+  - the use of other OIDC providers for authentication like Facebook, Google, and Amazon
+
+
 ## build locally
 docker build . -t  python-web 
 
@@ -7,7 +16,7 @@ docker build . -t  python-web
 ( should be able to get to the main page only unless you setup copilot manually to use the following )
  - localhost/authorize as redirect url and 
  - localhost/logout as logout url)
- - also set COGNITO_USER_POOL_ID and COGNITO_CLIENT_ID in the .env file
+ - also set USER_POOL_ID and USER_POOL_CLIENT_ID in an .env 
 
 ```
 docker run --name=python-web --rm -p 8080:8080 python-web
