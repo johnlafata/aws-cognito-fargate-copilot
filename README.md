@@ -1,6 +1,6 @@
 # Using AWS Copilot to deploy to Fargate using Amazon Cognito for authentication.
 
-This repo represents the collection of my effort to deploy a simple python application to AWS Fargate with a public page and a private page.  The private page can be accessed after registration and authentication with Amazon Cognito.   I am using AWS copilot as a tool to create all the AWS infrastructure needed and manage the deployment.   
+This repo represents the collection of my effort to deploy a simple python application to AWS Fargate with a public page and a private page.  The private page can be accessed after registration and authentication with Amazon Cognito.   The application uses AWS copilot as a tool to create all the AWS infrastructure needed and manage the deployment.   
 
 Future updates will include:
   - the addition of a CI/CD pipeline using AWS CodePipeline.
@@ -274,7 +274,7 @@ copilot pipeline deploy
 
 
 # setting up google as an identity provider
-# https://docs.aws.amazon.com/cognito/lapython-web/developerguide/google.html
+# https://docs.aws.amazon.com/cognito/latest/developerguide/google.html
 
 
 ## debugging 
