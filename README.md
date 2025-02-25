@@ -12,7 +12,7 @@ If you find this useful, I would appreciate you starring the repo.  If you have 
 ## build locally
 docker build . -t  python-web 
 
-## python-web locally 
+## test locally 
 
 ( should be able to get to the main page only unless you setup copilot manually to use the following )
  - localhost/authorize as redirect url and 
@@ -28,7 +28,7 @@ docker run --name=python-web --rm -p 8080:8080 python-web
 - Docker Desktop installed
 - AWS copilot installed
 - non root account AWS_ACCESS_KEY and AWS_ACCESS_KEY_SECRET in AWS Profile
-  - instructions: https://docs.aws.amazon.com/IAM/lapython-web/UserGuide/id_root-user.html 
+  - instructions: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html 
   - for example: create an alternate IAM user via the console, 
 ```
 export AWS_PROFILE=my-app
@@ -200,12 +200,12 @@ Response:
   => exporting to image                                                                                                                  0.0s
   => => exporting layers                                                                                                                 0.0s
   => => writing image sha256:668a86db0c18f4e7f51018da167bb3e18d92b778989596de94a1be958f1a9541                                            0.0s
-  => => naming to 375559983734.dkr.ecr.us-east-1.amazonaws.com/doc-processor/doc-processor:lapython-web                                        0.0s
-  => => naming to 375559983734.dkr.ecr.us-east-1.amazonaws.com/doc-processor/doc-processor:1.0.0                                         0.0s
+  => => naming to 375559983734.dkr.ecr.us-east-1.amazonaws.com/python-web/backend:latest
+  => => naming to 375559983734.dkr.ecr.us-east-1.amazonaws.com/python-web/backend:1.0.0                                         0.0s
 
   What's next:
       View a summary of image vulnerabilities and recommendations → docker scout quickview 
-  The push refers to repository [375559983734.dkr.ecr.us-east-1.amazonaws.com/doc-processor/doc-processor]
+  The push refers to repository [375559983734.dkr.ecr.us-east-1.amazonaws.com/python-web/backend]
   43b236f75abb: Pushed 
   5efb54d9d7cc: Pushed 
   d7121cc7545f: Pushed 
@@ -215,7 +215,7 @@ Response:
   a0653a4a46ce: Pushed 
   7914c8f600f5: Pushed 
   lapython-web: digest: sha256:217dca0ca8f2669b60acc1a4386ef7393fd2a89fb421ca9f10129dbcf443286f size: 1993
-  The push refers to repository [375559983734.dkr.ecr.us-east-1.amazonaws.com/doc-processor/doc-processor]
+  The push refers to repository [375559983734.dkr.ecr.us-east-1.amazonaws.com/python-web/backend]
   43b236f75abb: Layer already exists 
   5efb54d9d7cc: Layer already exists 
   d7121cc7545f: Layer already exists 
@@ -225,8 +225,8 @@ Response:
   a0653a4a46ce: Layer already exists 
   7914c8f600f5: Layer already exists 
   1.0.0: digest: sha256:217dca0ca8f2669b60acc1a4386ef7393fd2a89fb421ca9f10129dbcf443286f size: 1993
-  ✔ Proposing infrastructure changes for stack doc-processor-qa-doc-processor
-    - Creating the infrastructure for stack doc-processor-qa-doc-processor                   [create complete]  [426.5s]
+  ✔ Proposing infrastructure changes for stack python-web-qa-backend
+    - Creating the infrastructure for stack python-web-qa-backend                   [create complete]  [426.5s]
     - Service discovery for your services to communicate within the VPC                    [create complete]  [0.0s]
     - Update your environment's shared resources                                           [update complete]  [208.2s]
       - An Elastic IP for NAT Gateway 2                                                    [create complete]  [14.2s]
@@ -252,7 +252,7 @@ Response:
     - An IAM role to control permissions for the containers in your tasks                  [create complete]  [15.8s]
   ✔ Deployed service doc-processor.
   Recommended follow-up action:
-    - Your service is accessible at http://doc-pr-Publi-ctJvRb9rcVev-1702684940.us-east-1.elb.amazonaws.com over the internet.
+    - Your service is accessible at https://backend.qa.python-web.k8s-kloud.com over the internet.
 
   ```
 
@@ -277,16 +277,5 @@ copilot pipeline deploy
 # https://docs.aws.amazon.com/cognito/latest/developerguide/google.html
 
 
-## debugging 
-
-export namespace_id=srv-kpgrw7w2wmcgytbq
-export service_name=backend
-service_details=$(aws servicediscovery get-service --id $namespace_id --service-id $service_name --query 'Service.DnsConfig.DnsRecords[0].Value')
-
-
-## debugging - addition of a domain name
-✘ execute deployment 1 of 1 in group 1: deploy service backend to environment qa: validate ALB runtime configuration for "http": cannot specify "alias" when application is not associated with a domain and env qa doesn't import one or more certificates
-
-
 ### login page
-# https://docs.aws.amazon.com/cognito/lapython-web/developerguide/login-endpoint.html
+# https://docs.aws.amazon.com/cognito/latest/developerguide/login-endpoint.html
