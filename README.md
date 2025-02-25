@@ -7,6 +7,7 @@ Future updates will include:
   - the addition of a login page using Amazon Cognito.
   - the use of other OIDC providers for authentication like Facebook, Google, and Amazon
 
+If you find this useful, I would appreciate you starring the repo.  If you have any questions, please feel free to reach out to me at [LinkedIn](https://www.linkedin.com/in/kevin-kloud-kloud/)
 
 ## build locally
 docker build . -t  python-web 
