@@ -50,7 +50,7 @@ You can pass the parameters in the command line if you want as follows, when pro
   ```
   copilot app init                   \
     python-web                       \
-    --domain       'k8s-kloud.com'           
+    --domain       'agi-explorer.com'           
   ```
 
 Response:
@@ -58,8 +58,8 @@ Response:
  Proposing infrastructure changes for stack python-web-infrastructure-roles
 - Creating the infrastructure for stack python-web-infrastructure-roles                         [create complete]  [79.2s]
   - A StackSet admin role assumed by CloudFormation to manage regional stacks                   [create complete]  [18.6s]
-  - Add NS records to delegate responsibility to the python-web.k8s-kloud.com subdomain         [create complete]  [31.0s]
-  - A hosted zone for python-web.k8s-kloud.com                                                  [create complete]  [42.4s]
+  - Add NS records to delegate responsibility to the python-web.agi-explorer.com subdomain         [create complete]  [31.0s]
+  - A hosted zone for python-web.agi-explorer.com                                                  [create complete]  [42.4s]
   - A DNS delegation role to allow accounts: 375559983734 to manage your domain                 [create complete]  [19.7s]
   - An IAM role assumed by the admin role to create ECR repositories, KMS keys, and S3 buckets  [create complete]  [19.5s]
 ✔ The directory copilot will hold service manifests for application python-web.
@@ -252,7 +252,7 @@ Response:
     - An IAM role to control permissions for the containers in your tasks                  [create complete]  [15.8s]
   ✔ Deployed service doc-processor.
   Recommended follow-up action:
-    - Your service is accessible at https://backend.qa.python-web.k8s-kloud.com over the internet.
+    - Your service is accessible at https://backend.qa.python-web.agi-explorer.com over the internet.
 
   ```
 

@@ -26,12 +26,12 @@ Resources:
         - ALLOW_USER_SRP_AUTH
         - ALLOW_REFRESH_TOKEN_AUTH
       CallbackURLs:
-        - !Sub "https://${Name}.${Env}.${App}.k8s-kloud.com/authorize"
+        - !Sub "https://${Name}.${Env}.${App}.agi-explorer.com/authorize"
         # would like to use the following per [https://aws.github.io/copilot-cli/docs/developing/domain/] but results in
         # Template format error: Unresolved resource dependencies [DomainName] in the Resources block of the template
         # - !Sub "https://${Name}.${Env}.${App}.${DomainName}/authorize"
       LogoutURLs:
-        - !Sub "https://${Name}.${Env}.${App}.k8s-kloud.com/logout"
+        - !Sub "https://${Name}.${Env}.${App}.agi-explorer.com/logout"
         # would like to use the following per [https://aws.github.io/copilot-cli/docs/developing/domain/]but results in
         # Template format error: Unresolved resource dependencies [DomainName] in the Resources block of the template
         # - !Sub "https://${Name}.${Env}.${App}.${DomainName}/logout"

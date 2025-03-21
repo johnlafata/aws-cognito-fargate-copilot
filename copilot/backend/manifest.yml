@@ -23,4 +23,4 @@ count: 1
 exec: true     # Enable running commands in your container.
 
 variables:                    
-  DOMAIN_NAME: k8s-kloud.com
+  DOMAIN_NAME: agi-explorer.com
